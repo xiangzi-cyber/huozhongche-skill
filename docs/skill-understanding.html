@@ -1,0 +1,874 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>火种车推文写作技能结构化文档 V2</title>
+  <style>
+    :root {
+      --paper: #f7f1e8;
+      --ink: #20232d;
+      --muted: #5d6472;
+      --card: rgba(255, 255, 255, 0.84);
+      --line: rgba(31, 35, 44, 0.08);
+      --shadow: 0 20px 50px rgba(29, 34, 46, 0.10);
+      --accent: #ff7247;
+      --olive: #81aa54;
+      --gold: #f0b438;
+      --blue: #3a7eea;
+      --pink: #df5f8d;
+      --violet: #8a65d1;
+      --cyan: #2fa6bf;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(255, 160, 102, 0.18), transparent 26%),
+        radial-gradient(circle at top right, rgba(101, 154, 255, 0.18), transparent 24%),
+        linear-gradient(135deg, #fcf8f2 0%, #f7f2ea 52%, #edf4f6 100%);
+    }
+
+    .page {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 28px 20px 88px;
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 28px;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 18px;
+      align-self: start;
+      background: rgba(255, 255, 255, 0.70);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.8);
+      border-radius: 26px;
+      padding: 24px 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      display: inline-flex;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #222733;
+      color: #fff;
+      font-size: 13px;
+      letter-spacing: .08em;
+      margin-bottom: 14px;
+    }
+
+    .sidebar h2 {
+      margin: 0 0 12px;
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    .sidebar p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .nav {
+      display: grid;
+      gap: 8px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--ink);
+      background: rgba(255,255,255,0.74);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 11px 14px;
+      font-size: 14px;
+      line-height: 1.45;
+      transition: transform .18s ease, background .18s ease;
+    }
+
+    .nav a:hover {
+      background: #fff;
+      transform: translateX(2px);
+    }
+
+    .content {
+      display: grid;
+      gap: 24px;
+    }
+
+    .hero,
+    .section,
+    .footer-card {
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.78);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 34px 34px 30px;
+    }
+
+    .hero-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      background: rgba(34,39,51,.08);
+      color: #303644;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      margin: 18px 0 0;
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 960px;
+    }
+
+    .hero-grid {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .mini-card {
+      background: rgba(255,255,255,.72);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 16px 16px 14px;
+    }
+
+    .mini-card strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .mini-card span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .section {
+      padding: 28px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 30px;
+      line-height: 1.18;
+    }
+
+    .section-desc {
+      margin: 8px 0 0;
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 840px;
+    }
+
+    .badge {
+      padding: 9px 14px;
+      border-radius: 999px;
+      color: white;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .step-card {
+      background: rgba(255,255,255,.78);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      overflow: hidden;
+    }
+
+    .step-bar {
+      padding: 14px 18px;
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .step-body {
+      padding: 18px 18px 20px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .step-body ul,
+    .principle-list,
+    .check-list,
+    .rule-list {
+      margin: 0;
+      padding-left: 20px;
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .step-body li + li,
+    .principle-list li + li,
+    .check-list li + li,
+    .rule-list li + li {
+      margin-top: 6px;
+    }
+
+    .callout {
+      border-radius: 20px;
+      padding: 16px 18px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid var(--line);
+    }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    .triple {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .subgrid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+    }
+
+    .code {
+      font-family: Menlo, Monaco, monospace;
+      font-size: 12.5px;
+      line-height: 1.75;
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #1f2430;
+      color: #f5f7fb;
+      border-radius: 18px;
+      padding: 16px 18px;
+      overflow: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(255,255,255,.72);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 14px 14px;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+      line-height: 1.7;
+      vertical-align: top;
+    }
+
+    th {
+      font-size: 13px;
+      color: var(--muted);
+      background: rgba(31,35,44,.03);
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 86px minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+      background: rgba(255,255,255,.72);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 16px;
+    }
+
+    .timeline-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 44px;
+      border-radius: 14px;
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .timeline-item h4 {
+      margin: 2px 0 8px;
+      font-size: 18px;
+    }
+
+    .timeline-item p,
+    .timeline-item li,
+    .card-copy,
+    .footer-card p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .timeline-item ul { margin: 8px 0 0; padding-left: 18px; }
+
+    .requirements {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .req {
+      background: rgba(255,255,255,.74);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .req strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .req span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .footer-card {
+      padding: 22px 24px;
+    }
+
+    .footer-card code {
+      font-family: Menlo, Monaco, monospace;
+      background: rgba(31,35,44,.06);
+      padding: 3px 7px;
+      border-radius: 8px;
+      color: #303644;
+    }
+
+    @media (max-width: 1120px) {
+      .page { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+      .hero-grid,
+      .process-grid,
+      .triple,
+      .requirements,
+      .subgrid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <span class="brand">STRUCTURED DOC V2</span>
+      <h2>这次按原文骨架来展示</h2>
+      <p>不是摘要海报，而是把原技能文档的层级关系完整展开：主流程、写作内核、查重流程、附录规范与配图规则。</p>
+      <nav class="nav">
+        <a href="#overview">文档总览</a>
+        <a href="#process">六步主流程</a>
+        <a href="#step4">步骤四的写作原则</a>
+        <a href="#step6">步骤六的自动化查重</a>
+        <a href="#structure">文件结构规范</a>
+        <a href="#experience">系列推文经验</a>
+        <a href="#privacy">配图隐私红线</a>
+        <a href="#requirements">16 条配图要求</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <section class="hero" id="overview">
+        <div class="hero-top">
+          <span class="chip">AI火种车</span>
+          <span class="chip">Skill V4.5</span>
+          <span class="chip">结构化六步工作流</span>
+          <span class="chip">写作 + 配图 + 去重 + 校验</span>
+        </div>
+        <h1>火种车推文写作技能<br>结构化可视文档</h1>
+        <p>
+          原文档真正的重点，不只是“怎么写一篇推文”，而是一套完整的生产链条：
+          先做素材梳理与缺口识别，再确定主线与结构，然后进入初稿写作、配图嵌入、表达去重、错别字校验和终稿交付。
+          第四步与第六步是整份文档的重心，一个负责价值观与表达质量，一个负责自动化去重与交付闭环。
+        </p>
+        <div class="hero-grid">
+          <div class="mini-card">
+            <strong>第一层：六步主流程</strong>
+            <span>从素材读取到终稿交付，顺序不可跳步。</span>
+          </div>
+          <div class="mini-card">
+            <strong>第二层：写作原则内核</strong>
+            <span>隐喻、细节、平视视角、引用规范，是成稿质感的核心。</span>
+          </div>
+          <div class="mini-card">
+            <strong>第三层：自动化校验</strong>
+            <span>查重不是附加项，而是表达风格差异化的一部分。</span>
+          </div>
+          <div class="mini-card">
+            <strong>第四层：附录规则</strong>
+            <span>文件结构、系列经验、隐私红线与 16 条配图要求共同约束落地执行。</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="process">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">六步主流程</h2>
+            <p class="section-desc">这里保留的是原文的真实结构，而不是压缩摘要。第 1-3 步负责“定素材、定主线、定结构”，第 4-6 步负责“成稿、配图、查重与交付”。</p>
+          </div>
+          <span class="badge" style="background: var(--accent);">核心主线</span>
+        </div>
+
+        <div class="process-grid">
+          <article class="step-card">
+            <div class="step-bar" style="background: linear-gradient(90deg, #ff7247, #ff9169);">步骤一：信息梳理与缺口识别</div>
+            <div class="step-body">
+              <ul>
+                <li>先读素材表（`.xlsx`），判断学校/活动属于什么场域。</li>
+                <li>素材库要按四类组织：学校背景、教师亮点、学生活动、现场花絮。</li>
+                <li>缺口识别是这一阶段的重点，不是附带动作。</li>
+              </ul>
+              <div class="callout">
+                <strong>必须追问的缺失项</strong>
+                <ul class="check-list">
+                  <li>活动具体日期：年份、月份、日期。</li>
+                  <li>活动课表：原文明确强调“课表是基础信息，必须主动索取”。</li>
+                  <li>其他关键人名、角色信息、现场身份信息。</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div class="step-bar" style="background: linear-gradient(90deg, #ffac42, #f6c45c);">步骤二：故事挖掘与主线提炼</div>
+            <div class="step-body">
+              <ul>
+                <li>不是立刻写，而是先从结构化素材中提 2-3 个故事角度。</li>
+                <li>常见角度包括：学生突破、教师变化、某个环节产生的影响。</li>
+                <li>必须让用户先选主线，必要时再补辅助线。</li>
+              </ul>
+              <div class="callout">
+                <strong>这一层的作用</strong>
+                <p class="card-copy">把“素材集合”变成“叙事中心”，避免后文写成流水账。</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div class="step-bar" style="background: linear-gradient(90deg, #f1b937, #f6d15d);">步骤三：结构与风格选择</div>
+            <div class="step-body">
+              <ul>
+                <li>叙事结构只有两种：线性叙事，或模块化报道。</li>
+                <li>线性叙事适合单一强情绪故事；模块化报道适合更复杂的场景信息。</li>
+                <li>标题必须主动给出 3 个方向：新闻风格、故事风格、系列报道风格。</li>
+              </ul>
+              <div class="callout">
+                <strong>这里不是形式选择题</strong>
+                <p class="card-copy">原文实际在要求“标题风格”与“叙事结构”先对齐主线，再进入初稿。</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div class="step-bar" style="background: linear-gradient(90deg, #74b25c, #95c86d);">步骤四：初稿撰写与主线深化</div>
+            <div class="step-body">
+              <ul>
+                <li>这是全文重心，不只是“开始写”。</li>
+                <li>要同时落实：隐喻、细节、辅助线克制、结尾回收、词语翻转和平视视角。</li>
+                <li>名言引用也被单独列为规范，说明它在文章气质里占比很高。</li>
+              </ul>
+              <div class="callout">
+                <strong>交付前动作</strong>
+                <p class="card-copy">写完后先做自我诊断，但这份诊断不能直接出现在文章正文里，只能转成 2-4 条对用户可见的优化说明。</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div class="step-bar" style="background: linear-gradient(90deg, #31aac2, #56bfd4);">步骤五：配图策略与建议</div>
+            <div class="step-body">
+              <ul>
+                <li>配图建议不是独立附件，而是要直接嵌进修订稿，用引用块表达。</li>
+                <li>这一步要同时受两套规则约束：隐私保护红线 + 16 条隐形要求。</li>
+                <li>也就是说，文字与图片在此处开始被当作同一份成品来处理。</li>
+              </ul>
+              <div class="callout">
+                <strong>结构意义</strong>
+                <p class="card-copy">原文把配图放在初稿之后、查重之前，说明它是“编辑工序”，而不是发布时临时补充。</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="step-card">
+            <div class="step-bar" style="background: linear-gradient(90deg, #4f86eb, #7a9af5);">步骤六：表达去重与终稿交付</div>
+            <div class="step-body">
+              <ul>
+                <li>原文对这一部分写得很长，说明“避免表达同质化”是技能核心之一。</li>
+                <li>不仅要跑脚本，还要分析报告、给替换建议、查错别字，再做精修交付。</li>
+                <li>这一段其实是“终稿质检流程”，不是单纯查重。</li>
+              </ul>
+              <div class="callout">
+                <strong>关键词</strong>
+                <p class="card-copy">句式重复、高频词、核心意象、错别字、人名地名一致性、修改说明。</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="step4">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">步骤四的写作原则内核</h2>
+            <p class="section-desc">如果说前 1-3 步在决定“写什么”，那么步骤四在决定“这篇稿子为什么像火种车，而不是任何一篇普通活动报道”。</p>
+          </div>
+          <span class="badge" style="background: var(--olive);">文风中枢</span>
+        </div>
+
+        <div class="subgrid">
+          <div class="callout">
+            <strong>核心写作原则</strong>
+            <ul class="principle-list">
+              <li><strong>隐喻贯穿全文</strong>：用一个意象串起开头、正文和结尾，形成结构回环。</li>
+              <li><strong>细节当主角</strong>：一句原话、一个动作、一个实物，要承担模块情绪，而不是做点缀。</li>
+              <li><strong>辅助线索克制</strong>：辅助线只负责托主线，不抢戏，通常只占一个模块。</li>
+              <li><strong>结尾意象串联</strong>：不要直接下结论，而是让结尾重新召回前文最具体的画面。</li>
+              <li><strong>词语翻转解读</strong>：当引语里有负向词时，要学会在语境中做反转，制造情绪拐点。</li>
+            </ul>
+          </div>
+          <div class="callout">
+            <strong>为什么这一部分重要</strong>
+            <p class="card-copy">
+              原文在步骤四里塞入了最多的原则，说明它不是普通的“写稿说明”，而是这份 skill 的价值观约束区。
+              也就是：好稿子不是信息更全，而是叙述姿态、情绪组织和细节调用都更准确。
+            </p>
+          </div>
+        </div>
+
+        <div class="triple" style="margin-top: 16px;">
+          <div class="callout">
+            <strong>平视视角：禁用表达</strong>
+            <ul class="rule-list">
+              <li>这里的孩子很可怜</li>
+              <li>这里的孩子需要帮助</li>
+              <li>山里的孩子从没见过</li>
+              <li>这里条件有限</li>
+              <li>山区孩子相比城市孩子</li>
+            </ul>
+          </div>
+          <div class="callout">
+            <strong>平视视角：推荐替换方向</strong>
+            <ul class="rule-list">
+              <li>写孩子自己的力量、见识与视野。</li>
+              <li>强调主动性、创造力与表达能力。</li>
+              <li>尽量让原话与行动自己完成叙述。</li>
+            </ul>
+          </div>
+          <div class="callout">
+            <strong>平视视角：叙事立场</strong>
+            <ul class="rule-list">
+              <li>我们是来记录的，不是来帮助的。</li>
+              <li>火种车带来的是资源，不是同情。</li>
+              <li>读者应感到“这些孩子很了不起”。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="triple" style="margin-top: 16px;">
+          <div class="callout">
+            <strong>名言引用：多元搭配</strong>
+            <p class="card-copy">推荐“开头用宏观权威，结尾用教育家情感共鸣”的搭配，不要整篇只用一类引语。</p>
+          </div>
+          <div class="callout">
+            <strong>名言引用：在地相关</strong>
+            <p class="card-copy">必须与当地地理、历史、文化直接相关，不能只是通用鸡汤式教育话语。</p>
+          </div>
+          <div class="callout">
+            <strong>名言引用：避免扶贫标签</strong>
+            <p class="card-copy">原文特别点名不要用“扶贫必扶智”类表达，应优先选择科技、梦想、创造力和未来相关语句。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="step6">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">步骤六的自动化查重与交付闭环</h2>
+            <p class="section-desc">这一部分在原文中篇幅最大，说明它不是可选功能，而是用于保证系列稿件“每篇都像火种车，但彼此不撞车”的最后一道工序。</p>
+          </div>
+          <span class="badge" style="background: var(--blue);">质检闭环</span>
+        </div>
+
+        <div class="callout" style="margin-bottom: 16px;">
+          <strong>查重目的</strong>
+          <p class="card-copy">检查的是表达层面的重复，而不是事实层面的重复。重点盯三件事：相似句式、高频词汇、核心意象。</p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-num" style="background: var(--accent);">01</div>
+            <div>
+              <h4>准备原文来源</h4>
+              <p>先决定比对来源，原文给出明确优先级：</p>
+              <div style="margin-top: 12px;">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>方式</th>
+                      <th>说明</th>
+                      <th>可用性</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>文件上传</td>
+                      <td>Word/PDF 直接读取，比对最稳定。</td>
+                      <td>推荐</td>
+                    </tr>
+                    <tr>
+                      <td>微信链接抓取</td>
+                      <td>用 PC 微信客户端 UA 抓取公众号文章。</td>
+                      <td>可用，但必须伪装 UA</td>
+                    </tr>
+                    <tr>
+                      <td>没有可比对内容</td>
+                      <td>跳过查重，直接进入润色终稿。</td>
+                      <td>兜底</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-num" style="background: var(--gold);">02</div>
+            <div>
+              <h4>转换文本并建立工作目录</h4>
+              <p>所有已发布 PDF 要先转成纯文本，统一放到一个目录，后续脚本才有比对对象。</p>
+              <div class="code" style="margin-top: 12px;">mkdir -p /home/ubuntu/published_articles
+
+# 将 source.pdf 转换为 target.txt
+pdftotext /path/to/source.pdf /home/ubuntu/published_articles/target.txt</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-num" style="background: var(--cyan);">03</div>
+            <div>
+              <h4>运行抓取或去重脚本</h4>
+              <p>原文不仅给了脚本命令，还特别注明微信链接抓取要使用 PC 微信 UA，这说明工具路径已经被实操验证过。</p>
+              <div class="code" style="margin-top: 12px;">curl -s -L \
+  -H 'User-Agent: Mozilla/5.0 ... WindowsWechat/WMPF ...' \
+  -H 'Referer: https://mp.weixin.qq.com/' \
+  '[微信文章链接]' | python3.11 -c "
+import sys
+from bs4 import BeautifulSoup
+html = sys.stdin.read()
+soup = BeautifulSoup(html, 'html.parser')
+content = soup.find(id='js_content')
+if content:
+    print(content.get_text(separator='\\n', strip=True))
+"
+
+python3.11 /home/ubuntu/skills/huozhongche-tweet-writing/scripts/dedup_check.py \
+  --draft [新稿路径] \
+  --published-dir /home/ubuntu/published_articles/</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-num" style="background: var(--violet);">04</div>
+            <div>
+              <h4>解读报告并形成替换建议</h4>
+              <ul>
+                <li>句子级重复：判断是同稿迭代可忽略，还是跨稿件重复必须修改。</li>
+                <li>意象词与高频词：重点看已发布稿件中出现频次过高、又在新稿中再次出现的词。</li>
+                <li>要把建议整理成表格给用户，而不是直接闷头改。</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-num" style="background: var(--pink);">05</div>
+            <div>
+              <h4>错别字检查与终稿交付</h4>
+              <ul>
+                <li>逐句人工校验：形近字、同音字、漏字、多字、人名地名一致性。</li>
+                <li>确认后再执行精准替换，最后交付 `.md` 终稿和修改前后说明。</li>
+                <li>所以这一步实际是“查重 + 校对 + 修订 + 交付”四合一流程。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="structure">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">文件结构规范</h2>
+            <p class="section-desc">这部分不是格式洁癖，而是在约束最终交付的 Markdown 结构，方便后续发布使用。</p>
+          </div>
+          <span class="badge" style="background: #6f788a;">格式约束</span>
+        </div>
+        <div class="triple">
+          <div class="callout">
+            <strong>主标题</strong>
+            <p class="card-copy">不写入 `.md` 文件，发布时单独作为文章标题使用。</p>
+          </div>
+          <div class="callout">
+            <strong>一级标题 `#`</strong>
+            <p class="card-copy">用于文章内部大的章节或日期分隔，例如 `# Day 1: 六城奔赴，一夜星光`。</p>
+          </div>
+          <div class="callout">
+            <strong>二级标题 `##`</strong>
+            <p class="card-copy">用于小标题，如 `## 教师组`；标题和正文必须分行，不能接在同一行后面。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="experience">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">系列推文写作经验</h2>
+            <p class="section-desc">这是原文档的“长期经验层”，不属于单次写稿步骤，但会持续影响每篇文章的标题、结尾和信息处理方式。</p>
+          </div>
+          <span class="badge" style="background: var(--violet);">经验约束</span>
+        </div>
+        <div class="process-grid">
+          <div class="callout">
+            <strong>标题风格延续性</strong>
+            <p class="card-copy">标题要沿用“事件节点：一句话总结”的系列格式，新标题应主动对齐已发布稿件的语气和结构。</p>
+          </div>
+          <div class="callout">
+            <strong>结尾视角</strong>
+            <p class="card-copy">结尾更适合“见证者”视角，而不是把读者硬拉进现场，避免“我们在 XX 等你”式表达。</p>
+          </div>
+          <div class="callout">
+            <strong>不确定信息处理</strong>
+            <p class="card-copy">时间、地点、人名不确定时，一律先隐藏，不能猜测后写入成稿。</p>
+          </div>
+          <div class="callout">
+            <strong>鸣谢与人物细节</strong>
+            <p class="card-copy">文末必须鸣谢华为 TECH4ALL 与西部阳光基金会；志愿者类稿件必须写出具体人物、分工与现场状态。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="privacy">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">配图隐私保护红线</h2>
+            <p class="section-desc">原文明确写了“最高优先级”，意味着这一组规则会覆盖其他所有配图建议。</p>
+          </div>
+          <span class="badge" style="background: var(--pink);">最高优先级</span>
+        </div>
+        <div class="triple">
+          <div class="callout">
+            <strong>严禁</strong>
+            <p class="card-copy">学生脸部正面特写照片。</p>
+          </div>
+          <div class="callout">
+            <strong>优先</strong>
+            <p class="card-copy">背影、侧影、低头操作、从背后拍摄的全景，既有活动感，也更安全。</p>
+          </div>
+          <div class="callout">
+            <strong>封面原则</strong>
+            <p class="card-copy">有人物活动会比纯风景更有生活感，但必须确保面部不清晰或只出现背影/侧影。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="requirements">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">16 条配图隐形要求</h2>
+            <p class="section-desc">这部分不是审美建议，而是步骤五的强制规范。原文的逻辑非常清楚：先满足隐私红线，再用这些要求提升叙事感、身份感和完成度。</p>
+          </div>
+          <span class="badge" style="background: var(--cyan);">图像叙事规则</span>
+        </div>
+        <div class="requirements">
+          <div class="req"><strong>1. 开篇要宏大</strong><span>广角场景中要同时出现学校环境与人物活动。</span></div>
+          <div class="req"><strong>2. 身份须明确</strong><span>校门、校牌是学校身份锚点，优先完整画面。</span></div>
+          <div class="req"><strong>3. 概念图形化</strong><span>抽象模型优先用信息图，而非普通照片。</span></div>
+          <div class="req"><strong>4. 特写显细节</strong><span>名牌、手部、文具、屏幕细节都能增强叙事密度。</span></div>
+          <div class="req"><strong>5. 作品即成果</strong><span>学生作品、代码、笔记、AI 生成结果都是成果画面。</span></div>
+          <div class="req"><strong>6. 界面即内容</strong><span>提到工具与软件时，直接展示界面往往最直观。</span></div>
+          <div class="req"><strong>7. 反馈即价值</strong><span>鼓掌、举手、拍照这类“价值被接住”的瞬间优先级高。</span></div>
+          <div class="req"><strong>8. 协作显社群</strong><span>围看同一块屏幕、共同讨论，比单人静态照更有社群感。</span></div>
+          <div class="req"><strong>9. 合影显成功</strong><span>收尾图最好是师生合影，完成感和正向情绪都会更强。</span></div>
+          <div class="req"><strong>10. 情绪抓人心</strong><span>优先挑选能明显传达积极情绪的动作瞬间，而非摆拍肖像。</span></div>
+          <div class="req"><strong>11. 讲师须在场</strong><span>至少要有讲师或分享者正在讲解的照片。</span></div>
+          <div class="req"><strong>12. 拼图讲故事</strong><span>工具/成果与人物反应并置，能形成更强的因果叙事。</span></div>
+          <div class="req"><strong>13. 动作代替面孔</strong><span>探头、背影、看黑板等动作比正脸更叙事，也更安全。</span></div>
+          <div class="req"><strong>14. 实物优于截图</strong><span>孩子拿着打印作品，比单独一张屏幕截图更有温度。</span></div>
+          <div class="req"><strong>15. 黑板即叙事</strong><span>黑板文字和粉笔画本身就是可用的现场叙事材料。</span></div>
+          <div class="req"><strong>16. 准备即付出</strong><span>幕后准备照能显示团队投入，是文章的重要情绪补充。</span></div>
+        </div>
+      </section>
+
+      <section class="footer-card">
+        <p>
+          新版文档文件：<code>/Users/xiaojinyu/Documents/虾/火种车/huozhongche-skill-visual-doc-v2.html</code><br>
+          原始技能文档：<code>/Users/xiaojinyu/.codex/skills/huozhongche-tweet-writing/SKILL.md</code>
+        </p>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
