@@ -24,6 +24,8 @@
   - 对应讲稿版说明。
 - `docs/project-background.md`
   - 项目背景与命名更新说明。
+- `docs/skill-installation.md`
+  - 安装到 Skill 系统的具体步骤说明。
 - `docs/universal-usage.md`
   - 非 Codex 场景下的通用使用说明。
 - `examples/`
@@ -138,6 +140,57 @@
 
 当前仓库原生适配的是 Codex，但整体方法也可以迁移到其他支持类似 Skill 机制的平台中。
 
+## 如何安装到 Skill 系统
+
+如果你希望拿到最完整、最稳定的效果，推荐把整个仓库作为一个 Skill 包整体安装，而不是只复制其中一段提示词。
+
+### 方式一：安装到 Codex
+
+1. 下载或克隆这个仓库到本地。
+2. 把整个仓库目录放到你的 Skill 目录中，并命名为 `huozhongche-skill`。
+3. 确保目录里至少保留这些核心内容：
+   - `SKILL.md`
+   - `scripts/`
+   - `templates/`
+   - `docs/`
+   - `examples/`
+4. 重启 Codex，或重新加载本地 Skill。
+5. 在新任务中直接提到这套系统，开始写作。
+
+典型目录结构可以是：
+
+```text
+$CODEX_HOME/skills/huozhongche-skill/
+├── SKILL.md
+├── scripts/
+├── templates/
+├── docs/
+└── examples/
+```
+
+### 方式二：安装到其他支持 Skill 或知识包的系统
+
+如果你使用的是其他支持 Skill、知识包、自定义智能体目录的平台，建议也尽量保留整个仓库结构导入。
+
+最低建议保留：
+
+- `SKILL.md`
+- `templates/universal-writing-prompt.md`
+- `examples/material-intake/`
+- `examples/phase-1-pdfs/`
+- `docs/skill-understanding.html`
+
+如果平台支持脚本或工具调用，也建议把 `scripts/dedup_check.py` 一并保留。
+
+### 安装成功后的验证方式
+
+安装完成后，可以直接用下面这类任务测试：
+
+- “请按 AI火种车数智课堂写作系统，先梳理这份素材表并识别缺口。”
+- “请不要直接写终稿，先给我 2-3 个主线方向和结构建议。”
+
+如果系统能先做素材梳理、缺口识别、主线提炼，而不是一上来直接写成稿，就说明安装方向基本是对的。
+
 ### 2. 通用 AI 模型模式（可用，但次优）
 
 适合使用 ChatGPT、Claude、Kimi、豆包、元宝、通义等模型的同学。
@@ -219,6 +272,8 @@
   - 用来帮助协作者快速理解这套写作系统的结构与重点。
 - 讲解页面
   - 用来向同级老师解释这套系统为什么能减轻焦虑、如何按点检查推进。
+- Skill 安装说明
+  - 用来指导如何把整个仓库作为一个 Skill 系统整体安装。
 - 通用使用说明
   - 用来指导非 Codex 使用者怎样把这套方法迁移到其他模型或人工协作中。
 - 项目背景说明
