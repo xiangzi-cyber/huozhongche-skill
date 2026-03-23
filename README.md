@@ -4,6 +4,24 @@
 
 这套内容的最佳使用方式，是把它整体安装到支持 Skill 或自定义智能体知识包的系统中使用。当前仓库提供了可直接落地的 `Codex Skill` 版本，同时也保留了跨平台迁移能力，方便在 ChatGPT、Claude、Kimi、豆包、元宝等模型中复用。
 
+## 3 步安装
+
+如果你想先快速装起来，优先看这一段：
+
+1. 获取仓库：克隆或下载本仓库到本地。
+2. 放入 Skill 目录：把整个仓库目录放到你的 Skill 系统目录中，并保留 `SKILL.md`、`scripts/`、`templates/`、`docs/`、`examples/`。
+3. 重启并验证：重启 Skill 系统后，用一句测试任务验证是否会先做“素材梳理 -> 缺口识别 -> 主线提炼”。
+
+如果你使用的是 Codex，典型目录结构可以是：
+
+```text
+$CODEX_HOME/skills/huozhongche-skill/
+```
+
+如果你需要完整安装步骤、迁移建议和验证方式，请看：
+
+- `docs/skill-installation.md`
+
 ## 仓库内容
 
 - `SKILL.md`
