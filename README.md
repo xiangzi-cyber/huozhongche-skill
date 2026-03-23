@@ -42,8 +42,6 @@ $CODEX_HOME/skills/huozhongche-skill/
   - 对应讲稿版说明。
 - `docs/project-background.md`
   - 项目背景与命名更新说明。
-- `docs/security-hardening.md`
-  - 仓库安全加固与 GitHub 后台设置清单。
 - `docs/skill-installation.md`
   - 安装到 Skill 系统的具体步骤说明。
 - `docs/universal-usage.md`
@@ -296,8 +294,6 @@ $CODEX_HOME/skills/huozhongche-skill/
   - 用来向同级老师解释这套系统为什么能减轻焦虑、如何按点检查推进。
 - Skill 安装说明
   - 用来指导如何把整个仓库作为一个 Skill 系统整体安装。
-- 仓库安全加固说明
-  - 用来指导 GitHub 后台应该开启哪些关键安全项。
 - 通用使用说明
   - 用来指导非 Codex 使用者怎样把这套方法迁移到其他模型或人工协作中。
 - 项目背景说明
@@ -321,23 +317,3 @@ $CODEX_HOME/skills/huozhongche-skill/
 ## License
 
 本仓库当前沿用仓库中的 `LICENSE` 文件。
-
-## 仓库安全
-
-为了降低持续运营过程中的安全风险，仓库现在已经补了基础安全文件，包括：
-
-- `SECURITY.md`
-- `.gitignore`
-- `.github/CODEOWNERS`
-- `.github/pull_request_template.md`
-
-但最关键的几项仍需要你在 GitHub 后台手动开启，例如：
-
-- `main` 分支保护
-- Private vulnerability reporting
-- Secret scanning
-- Code scanning
-
-具体操作建议见：
-
-- `docs/security-hardening.md`
