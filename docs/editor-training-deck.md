@@ -1,4 +1,4 @@
-# 火种车写文系统讲解稿
+# AI火种车数智课堂写文系统讲解稿
 
 原始技能文档：`/Users/xiaojinyu/.codex/skills/huozhongche-tweet-writing/SKILL.md`
 
@@ -8,7 +8,7 @@
 
 ## Slide 1 封面
 
-标题：火种车写文系统讲解稿
+标题：AI火种车数智课堂写文系统讲解稿
 
 讲解重点：
 
