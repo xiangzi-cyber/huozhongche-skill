@@ -1,0 +1,45 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local env / secrets
+.env
+.env.*
+*.local
+*.secret
+*.secrets
+*.token
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.csr
+
+# Logs / temp files
+*.log
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+
+# Local processing output
+published_articles/
+draft-output/
+
