@@ -215,6 +215,12 @@ $CODEX_HOME/skills/huozhongche-skill/
 
 适合使用 ChatGPT、Claude、Kimi、豆包、元宝、通义等模型的同学。
 
+> 温馨提醒：
+> 这套资料现在在 ChatGPT、Claude、Kimi、豆包、元宝等模型里都可以直接使用，先拿来跑流程、理解方法是完全没问题的。
+> 不过，这一版更适合做“迁移使用”和“快速上手”。
+> 如果后面想把效果跑得更稳定、更完整，最好还是放到带 Skill 系统的 AI 产品里。
+> 那一层通常会更适合已经有一点 AI 编程或 AI 工作流基础，尤其对提示词组织、工作流拆分、知识包 / Skill 配置比较熟悉的人来使用。
+
 使用方式：
 
 1. 打开 `templates/universal-writing-prompt.md`
